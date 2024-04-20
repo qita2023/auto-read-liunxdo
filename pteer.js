@@ -7,7 +7,7 @@ require("dotenv").config();
 const usernames = process.env.USERNAMES.split(",");
 const passwords = process.env.PASSWORDS.split(",");
 // 每个浏览器实例之间的延迟时间(毫秒)
-const delayBetweenInstances = 1000;
+const delayBetweenInstances = 10000;
 //随机等待时间
 function delayClick(time) {
   return new Promise(function (resolve) {
@@ -151,7 +151,7 @@ async function login(page, username, password) {
   // 等待用户名输入框加载
   await page.waitForSelector("#login-account-name");
   // 模拟人类在找到输入框后的短暂停顿
-  await delayClick(66); // 延迟66毫秒
+  await delayClick(500); // 延迟500毫秒
   // 清空输入框并输入用户名
   await page.click("#login-account-name", { clickCount: 3 });
   await page.type("#login-account-name", username, {
@@ -161,7 +161,7 @@ async function login(page, username, password) {
   // 等待密码输入框加载
   await page.waitForSelector("#login-account-password");
   // 模拟人类在输入用户名后的短暂停顿
-  await delayClick(66);
+  await delayClick(500);
   // 清空输入框并输入密码
   await page.click("#login-account-password", { clickCount: 3 });
   await page.type("#login-account-password", password, {
@@ -169,7 +169,7 @@ async function login(page, username, password) {
   });
 
   // 模拟人类在输入完成后思考的短暂停顿
-  await delayClick(666);
+  await delayClick(1000);
 
   // 假设登录按钮的ID是'login-button'，点击登录按钮
   await page.waitForSelector("#login-button");
